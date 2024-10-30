@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Código QR</title>
+    <style>
+        body {
+            margin: 0; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            background-color: black; 
+            color: rgb(40, 102, 218);
+        }
+        h2 {
+            color: rgb(40, 102, 218);
+            text-align: center; 
+            font-size: 2em;
+        }
+        h1 {
+            color: rgb(253, 253, 253);
+            text-align: center; 
+            font-size: 2em;
+        }
+        label {
+            font-weight: bold;
+        }
+        #input-text {
+            padding: 8px;
+            margin-top: 10px;
+            width: 300px;
+            font-size: 1em;
+        }
+        #contenedor {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        p {
+            text-align: center; 
+        }
+        .link{
+            display: flex;
+            gap: 20px;
+        }
+        a {
+            color: rgb(247, 247, 247);
+            font-size: 1.2em;
+            text-decoration: none; 
+            padding: 10px; 
+            border: 2px solid rgb(40, 102, 218); 
+            border-radius: 5px; 
+            transition: background-color 0.3s, color 0.3s; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenido a tu generado de código QR de confianza mi amor</h1> 
+    <label for="input-text">Puedes ingresar cualquier información</label>
+    <input type="text" id="input-text" placeholder="Escriba aquí"/>
+    <button onclick="generar()">Generar QR</button>
+
+    <!-- Contiene el QR -->
+    <div id="contenedor"></div>
+
+    <p>Selecciona a donde te quieres dirigir</p>
+    <div id="link">
+        <a href="/inicio">Ir a inicio</a> 
+        <a href="/calculadora">Ir a la calculadora</a>
+    </div>
+
+</body>
+<!-- Link para crear el QR -->
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script> 
+<script src="app2.js"></script>
+</html>
