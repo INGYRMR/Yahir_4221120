@@ -1,10 +1,39 @@
-<h1>Editar Usuario</h1>
-<form action="/update/<%= user.id %>" method="POST">
-    <label for="name">Nombre:</label>
-    <input type="text" id="name" name="name" value="<%= user.name %>" required>
-    
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" value="<%= user.email %>" required>
-    
-    <button type="submit">Actualizar</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Editar Usuario</h1>
+    <form action="/update/<%= user.id %>" method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="<%= user.nombre %>" required>
+
+        <label for="Apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" value="<%= user.apellidos %>" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="<%= user.email %>" required>
+
+        <label for="telefono">Telefono:</label>
+        <input type="text" id="telefono" name="telefono" value="<%= user.telefono %>">
+
+        <label for="direccion">Direccion:</label>
+        <textarea id="direccion" name="direccion"><%= user.direccion %></textarea>
+
+        <label for="nacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="nacimiento" name="nacimiento" value="<%= user.nacimiento %>">
+
+        <label for="genero">Género:</label>
+        <select id="genero" name="genero">
+            <option value="Masculino" <%= user.genero == 'Masculino' ? 'selected' : '' %>>Masculino</option>
+            <option value="Femenino" <%= user.genero == 'Femenino' ? 'selected' : '' %>>Femenino</option>
+        </select>
+
+        <button type="submit">Actualizar</button>
+    </form>
+</body>
+</html>

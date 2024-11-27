@@ -8,15 +8,20 @@ USE `test`;
 -- Crea la tabla 'users'
 CREATE TABLE `users` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(255) NOT NULL,
+    `nombre` VARCHAR(255) NOT NULL,
+    `apellidos` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
+    `telefono` VARCHAR(15),
+    `direccion` TEXT,
+    `nacimiento` DATE,
+    `genero` VARCHAR(10),
     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Inserta algunos registros de ejemplo en la tabla 'users'
-INSERT INTO `users` (`name`, `email`)
+-- Inserción de registros
+INSERT INTO `users` (`nombre`, `apellidos`, `email`, `telefono`, `direccion`, `nacimiento`, `genero`)
 VALUES
-    ('Juan Pérez', 'juan.perez@example.com'),
-    ('María López', 'maria.lopez@example.com'),
-    ('Carlos Sánchez', 'carlos.sanchez@example.com');
+    ('Juan', 'Pérez Diaz', 'juan@gmail.com', '5551234567', 'Calle Real 123', '1999-10-5', 'Masculino'),
+    ('María', 'López Raz', 'maria@gmail.com', '5557654321', 'Avenida Siempre Viva ', '1985-11-11', 'Femenino'),
+    ('Carlos', 'Sánchez Garcia', 'carlos@gmail.com', '5559876543', 'Boulevard Principal 53', '1992-05-22', 'Masculino');

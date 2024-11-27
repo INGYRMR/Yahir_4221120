@@ -6,6 +6,7 @@ const app = express();
 //configuracion para el uso peticiones post
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/styles', express.static(__dirname + '/styles'));
 
 //platillas que sean dinamicas
 app.set('view engine', 'ejs');
@@ -42,7 +43,7 @@ app.get('/', (req, res) => {
     const query = 'SELECT * FROM users';
     db.query(query, (err, results) => {
         if (err) {
-            console.error('Error fetching users:', err);
+            console.error('Error al buscar los usuarios:', err);
             res.send('Error');
         } else {
             res.render('index', { users: results });
@@ -50,15 +51,19 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/add', (req, res) => {
+    res.render('add'); // Renderiza el formulario
+});
+
 
 //agregar usuarios
 
 app.post('/add', (req, res) => {
-    const { name, email } = req.body;
-    const query = 'INSERT INTO users (name, email) VALUES (?, ?)';
-    db.query(query, [name, email], (err) => {
+    const { nombre, apellidos, email, telefono, direccion, nacimiento, genero } = req.body;
+    const query = 'INSERT INTO users (nombre, apellidos, email, telefono, direccion, nacimiento, genero) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    db.query(query, [nombre, apellidos, email, telefono, direccion, nacimiento, genero], (err) => {
         if (err) {
-            console.error('Error adding user:', err);
+            console.error('Error al agregar usuarios:', err);
             res.send('Error');
         } else {
             res.redirect('/');
@@ -72,7 +77,7 @@ app.get('/edit/:id', (req, res) => {
     const query = 'SELECT * FROM users WHERE id = ?';
     db.query(query, [id], (err, results) => {
         if (err) {
-            console.error('Error fetching user:', err);
+            console.error('Error mostrar el usuario:', err);
             res.send('Error');
         } else {
             if (results.length > 0) {
@@ -87,10 +92,9 @@ app.get('/edit/:id', (req, res) => {
 // Ruta para actualizar usuario
 app.post('/update/:id', (req, res) => {
     const { id } = req.params;
-    const { name, email } = req.body;
-
-    const query = 'UPDATE users SET name = ?, email = ? WHERE id = ?';
-    db.query(query, [name, email, id], (err) => {
+    const {  nombre, apellidos, email, telefono, direccion, nacimiento, genero } = req.body;
+    const query = 'UPDATE users SET nombre = ?, apellidos = ?, email = ?, telefono = ?, direccion = ?, nacimiento = ?, genero = ? WHERE id = ?';
+    db.query(query, [nombre, apellidos, email, telefono, direccion, nacimiento, genero, id], (err) => {
         if (err) {
             console.error('Error updating user:', err);
             res.send('Error');
@@ -108,13 +112,15 @@ app.get('/delete/:id', (req, res) => {
     const query = 'DELETE FROM users WHERE id = ?';
     db.query(query, [id], (err) => {
         if (err) {
-            console.error('Error deleting user:', err);
+            console.error('Error al eliminar el usuario:', err);
             res.send('Error');
         } else {
             res.redirect('/');
         }
     });
 });
+
+
 
 
 
