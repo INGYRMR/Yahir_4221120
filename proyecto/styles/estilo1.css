@@ -1,7 +1,7 @@
-/* General styles */
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: #000000;
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,11 +12,10 @@ body {
 }
 
 h1 {
-    color: #333;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
-/* Table styles */
 table {
     width: 90%;
     border-collapse: collapse;
@@ -32,7 +31,7 @@ th, td {
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: #2054ff;
     color: white;
     font-weight: bold;
 }
@@ -45,7 +44,7 @@ tr:hover {
     background-color: #f1f1f1;
 }
 
-/* Action links styles */
+
 td a {
     text-decoration: none;
     font-weight: bold;
@@ -61,13 +60,13 @@ td a:hover {
     color: white;
 }
 
-/* Add user button */
+
 td a[href="/add"] {
-    background-color: #4CAF50;
+    background-color: #2054ff;
     color: white;
     border: none;
 }
 
 td a[href="/add"]:hover {
-    background-color: #45a049;
+    background-color: #2054ff;
 }

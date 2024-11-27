@@ -15,7 +15,6 @@ CREATE TABLE `users` (
     `direccion` TEXT,
     `nacimiento` DATE,
     `genero` VARCHAR(10),
-    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

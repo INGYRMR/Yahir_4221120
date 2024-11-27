@@ -2,11 +2,14 @@ const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
+const path = require('path');
 
 //configuracion para el uso peticiones post
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/styles', express.static(__dirname + '/styles'));
+
+//configuracion para los estilos
+app.use('/styles', express.static(path.join(__dirname, 'styles')));
 
 //platillas que sean dinamicas
 app.set('view engine', 'ejs');
@@ -24,9 +27,9 @@ const db = mysql.createConnection({
 //comprobacion de la conexion de la base de datos
 db.connect(err => {
     if (err) {
-        console.error('Error connecting to the database:', err);
+        console.error('Error en la conexión a la base de datos:', err);
     } else {
-        console.log('Connected to the MySQL database');
+        console.log('Conexión exitosa');
     }
 });
 
@@ -51,8 +54,10 @@ app.get('/', (req, res) => {
     });
 });
 
+// permite mostrar la información para agregar un usuario
+
 app.get('/add', (req, res) => {
-    res.render('add'); // Renderiza el formulario
+    res.render('add'); 
 });
 
 
@@ -81,7 +86,7 @@ app.get('/edit/:id', (req, res) => {
             res.send('Error');
         } else {
             if (results.length > 0) {
-                res.render('edit', { user: results[0] }); // Pasa el usuario a la vista 'edit'
+                res.render('edit', { user: results[0] }); 
             } else {
                 res.send('Usuario no encontrado');
             }
@@ -99,7 +104,7 @@ app.post('/update/:id', (req, res) => {
             console.error('Error updating user:', err);
             res.send('Error');
         } else {
-            res.redirect('/'); // Redirige al listado de usuarios
+            res.redirect('/'); 
         }
     });
 });
